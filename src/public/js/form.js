@@ -10,15 +10,15 @@ document.addEventListener('DOMContentLoaded', () => {
     
     try {
     
-    await fetch('/api/sessions/login', {
+        await fetch('/api/sessions/login', {
     
-    method: 'POST',
+        method: 'POST',
     
-    body: JSON.stringify(Object.fromEntries(formData.entries())),
+        body: JSON.stringify(Object.fromEntries(formData.entries())),
     
-    headers: {
+        headers: {
     
-    'Content-Type': 'application/json',
+        'Content-Type': 'application/json',
     
     },
     
@@ -48,13 +48,13 @@ document.addEventListener('DOMContentLoaded', () => {
     
     try {
     
-    await fetch('/api/sessions/logout', {
+        await fetch('/api/sessions/logout', {
     
-    method: 'GET',
+        method: 'GET',
     
-    headers: {
+        headers: {
     
-    'Content-Type': 'application/json',
+        'Content-Type': 'application/json',
     
     },
     
@@ -62,23 +62,23 @@ document.addEventListener('DOMContentLoaded', () => {
     
     .then((response) => {
     
-    if (response.ok) {
+        if (response.ok) {
     
-    window.location.target="_blank", href = response.url;
+            window.location.target="_blank", href = response.url;
     
-    }
+        }
     
     })
     
     .catch((error) => {
     
-    throw error;
+        throw error;
     
     });
     
     } catch (error) {
     
-    console.error(error);
+        console.error(error);
     
     }
     

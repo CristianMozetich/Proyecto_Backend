@@ -1,28 +1,37 @@
 import { Router } from "express";
-import { userModel } from "../models/user.models.js";
+import passport from "passport";
 
 const sessionRouter = Router()
 
-sessionRouter.post('/login', async (req,res)=>{
-    const {email, password} = req.body
+sessionRouter.post('/login', passport.authenticate('login'), async (req,res)=>{
+  try{
+    if(!req.user){
+        return res.status(401).send({mensaje: "Invalidate User"})
+    }
 
+        req.session.user = {
+            first_name: req.user.first_name,
+            last_name: req.user.last_name,
+            age: req.user.age,
+            email: req.user.email
+
+    }
+
+    res.status(200).send({ payload: req.user })
+  }catch(error){
+    res.status(500).send({mensaje: `error al iniciar sesion ${error} `})
+  }
+})
+
+sessionRouter.post('/register', passport.authenticate('register'), async(req, res)=>{
     try{
-        if(req.session.login){
-            res.status(200).send({resultado: 'login ya existente'})
+        if(!req.user){
+            res.status(400).send({mensaje: 'Usuario existente'})
         }
-        const user = await userModel.findOne({email: email})
-        if(user){
-            if(user.password == password){
-                req.session.login = true
-                res.status(200).send({resultado: 'login valido', message: user})
-            }else{
-                res.status(401).send({resultado: 'contraseña no valida', message: password})
-            }
-        }else{
-            res.status(404).send({resultado: 'user not found', message: user})
-        }
-    }catch( error ){
-        res.status(400).send(`error en Login ${error}`)
+ 
+        res.status(200).send({mesaje: 'usuario creado'})
+    }catch(error){
+        res.status(500).send({mensaje: `Error al registrar usuario ${error} `})
     }
 })
 

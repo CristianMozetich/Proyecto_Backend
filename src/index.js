@@ -13,6 +13,8 @@ import MongoStore from "connect-mongo";
 import session from "express-session";
 import userRouter from "./routes/users.routes.js";
 import sessionRouter from "./routes/sessions.routes.js";
+import passport from "passport";
+import initializePassport from "./config/passport.js";
 
 
 const __filename = fileURLToPath(import.meta.url)
@@ -56,6 +58,10 @@ app.use(session({
 
 }))
 
+//MIDDLEWARE PASSPORT
+initializePassport()
+app.use(passport.initialize())
+app.use(passport.session())
 
 //ROUTES
 app.use(express.json())
