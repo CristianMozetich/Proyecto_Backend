@@ -1,7 +1,9 @@
 import local from 'passport-local' // importo la estrategia
+import 'dotenv/config'
 import passport from 'passport' // importo el modulo
 import { validatePassword, createHash } from '../utils/bcrypt.js'
 import { userModel } from '../models/user.models.js'
+import GitHubStrategy from 'passport-github2'
 
 //DEFINO LA ESTRATEGIA A UTILIZAR 
 const localStrategy = local.Strategy
@@ -61,6 +63,41 @@ const initializePassport = ()=>{
         }
     }
     ))
+
+
+    //GITHUB APP (ESTRATEGIA DE AUTENTICACION DE GITHUB CON PASSPORT)
+    passport.use('github', new GitHubStrategy({
+        clientID: process.env.CLIENT_ID,
+        clientSecret: process.env.SECRET_CLIENT,
+        callbackURL: process.env.CALLBACK_URL
+    },
+    async (accessToken, refreshToken, profile, done) => {
+        try{
+            console.log(accessToken)
+            console.log(refreshToken)
+            console.log(profile._json)
+            const user = await userModel.findOne( {email: profile._json.email} )
+
+            if(user){
+                done(null, false)
+            }else{
+                const userCreated = await userModel.create({
+                    first_name: profile._json.name,
+                    las_name: '',
+                    email_profile: profile._json.email,
+                    age: 18, //Edad por defecto
+                    password: createHash(profile._json.email + profile._name )
+                })
+
+                done(null, userCreated)
+            }
+        }catch(error){
+            done(error)
+        }
+    }))
+
+
+
 
     //INICIALIZAR LA SESION DEL USUARIO
     passport.serializeUser((user, done)=>{

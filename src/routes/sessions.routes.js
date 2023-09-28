@@ -35,6 +35,18 @@ sessionRouter.post('/register', passport.authenticate('register'), async(req, re
     }
 })
 
+
+//RUTAS DE ESTRATEGIAS DE GITHUB
+sessionRouter.get('/githubCallback', passport.authenticate('github', {scope: ['user: email']}), async (req,res)=>{
+    res.status(200).send({mensaje: 'usuario registrado'})
+} )
+
+sessionRouter.get('/githubCallback', passport.authenticate('github'), async (req,res)=>{
+    req.session.user = req.user
+    res.status(200).send({mensaje: 'Usuario logueado'})
+} )
+
+
 sessionRouter.get('/logout', (req,res)=>{
     if(req.session.login){
         req.session.destroy()

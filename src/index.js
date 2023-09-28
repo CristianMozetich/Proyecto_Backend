@@ -29,9 +29,9 @@ mongoose.connect(process.env.MONGO_URL)
     
     console.log("BDD CONECTADA")
 
-    const resultados = await productModel.paginate(  { page: 1, sort: '' }, { query: '123', limit: 2 } )
+    //const resultados = await productModel.paginate(  { page: 1, sort: '' }, { query: '123', limit: 2 } )
 
-    console.log(resultados)
+    //console.log(resultados)
 
     /*const resultados = await cartModel.findOne({_id: '65034e62a405b34e7a9d6a8c'})
 
