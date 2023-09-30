@@ -65,6 +65,7 @@ const initializePassport = ()=>{
     ))
 
 
+    
     //GITHUB APP (ESTRATEGIA DE AUTENTICACION DE GITHUB CON PASSPORT)
     passport.use('github', new GitHubStrategy({
         clientID: process.env.CLIENT_ID,
