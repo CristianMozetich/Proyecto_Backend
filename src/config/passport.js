@@ -4,11 +4,44 @@ import passport from 'passport' // importo el modulo
 import { validatePassword, createHash } from '../utils/bcrypt.js'
 import { userModel } from '../models/user.models.js'
 import GitHubStrategy from 'passport-github2'
+import jwt from 'passport-jwt'
 
 //DEFINO LA ESTRATEGIA A UTILIZAR 
 const localStrategy = local.Strategy
+const JWTStrategy = jwt.Strategy
+const ExtractJWT = jwt.ExtractJwt //extraer de las cookies el token
+
 
 const initializePassport = ()=>{
+
+    const cookieExtractor = req =>{
+        console.log(req.cookies)
+
+        const token = req.cookies.jwtCookie ? req.cookies.jwtCookie : {}
+
+        console.log(token)
+
+        return token
+
+    }
+
+    passport.use('jwt', new JWTStrategy({
+        jwtFromRequest: ExtractJWT.fromExtractors([ cookieExtractor ]), // El token va a venir desde cookieExtractor
+
+        secretOrKey: process.env.JWT_SECRET
+
+
+
+    }, async(jwt_payload, done)=>{ //jwt_payload = info del token (en este caso info del cliente)
+        try{
+            console.log(jwt_payload)
+            return done(null, jwt_payload)
+        }catch(error){
+            return done(error)
+        }
+
+    }))
+
     passport.use('register', new localStrategy(
     {passReqToCallback: true, usernameField: 'email'}, async (req, username, password, done) =>{
         //REGISTRO DE USUARIO
