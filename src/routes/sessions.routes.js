@@ -1,5 +1,6 @@
 import { Router } from "express";
 import passport from "passport";
+import { passportError, authorization } from "../utils/messagesError.js";
 
 const sessionRouter = Router()
 
@@ -60,8 +61,12 @@ sessionRouter.get('/logout', (req,res)=>{
 
 
 
-sessionRouter.get('/current', passport.authenticate('jwt',{session: false}), (req,res) => {
+sessionRouter.get('/testJWT', passport.authenticate('jwt',{session: false}), (req,res) => {
     console.log(req)
+    res.send(req.user)
+})
+
+sessionRouter.get('/current', passportError('jwt'), authorization('user'), (req, res) => {
     res.send(req.user)
 })
 
