@@ -1,21 +1,15 @@
 import mongoose from "mongoose";
 import express from 'express'
-import productRouter from "./routes/products.routes.js";
-import cartRouter from "./routes/cart.routes.js";
-import messagesRouter from "./routes/messages.routes.js";
 import { engine } from "express-handlebars";
 import path from "path";
 import { fileURLToPath } from 'url'
-import { productModel } from "./models/products.models.js";
 import 'dotenv/config'
-//import { cartModel } from "./models/cart.models.js";
 import MongoStore from "connect-mongo";
 import session from "express-session";
-import userRouter from "./routes/users.routes.js";
-import sessionRouter from "./routes/sessions.routes.js";
 import passport from "passport";
 import initializePassport from "./config/passport.js";
 import cookieParser from "cookie-parser";
+import router from "./routes/index.routes.js";
 
 
 const __filename = fileURLToPath(import.meta.url)
@@ -68,18 +62,11 @@ initializePassport()
 app.use(passport.initialize())
 app.use(passport.session())
 
+
 //ROUTES
 app.use(express.json())
+app.use('/', router)
 
-app.use('/api/products', productRouter )
-
-app.use('/api/carts', cartRouter )
-
-app.use('/api/messages', messagesRouter)
-
-app.use('/api/users', userRouter)
-
-app.use('/api/sessions', sessionRouter)
 
 
 
