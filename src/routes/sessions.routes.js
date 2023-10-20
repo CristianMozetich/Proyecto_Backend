@@ -56,4 +56,13 @@ sessionRouter.get('/logout', (req,res)=>{
     res.status(200).send({resultado: 'Usuario deslogueado'})
 })
 
+
+
+
+
+sessionRouter.get('/current', passport.authenticate('jwt',{session: false}), (req,res) => {
+    console.log(req)
+    res.send(req.user)
+})
+
 export default sessionRouter

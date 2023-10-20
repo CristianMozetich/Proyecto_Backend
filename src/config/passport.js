@@ -19,7 +19,7 @@ const initializePassport = ()=>{
 
         const token = req.cookies.jwtCookie ? req.cookies.jwtCookie : {}
 
-        console.log(token)
+        console.log("cookieExtractor", token)
 
         return token
 
@@ -27,14 +27,11 @@ const initializePassport = ()=>{
 
     passport.use('jwt', new JWTStrategy({
         jwtFromRequest: ExtractJWT.fromExtractors([ cookieExtractor ]), // El token va a venir desde cookieExtractor
-
         secretOrKey: process.env.JWT_SECRET
-
-
 
     }, async(jwt_payload, done)=>{ //jwt_payload = info del token (en este caso info del cliente)
         try{
-            console.log(jwt_payload)
+            console.log("JWT",jwt_payload)
             return done(null, jwt_payload)
         }catch(error){
             return done(error)
@@ -81,7 +78,7 @@ const initializePassport = ()=>{
             const user = await userModel.findOne({email: username})
 
             if(!user){
-                return done(null, done)
+                return done(null, false)
 
             }
 
@@ -117,7 +114,7 @@ const initializePassport = ()=>{
             }else{
                 const userCreated = await userModel.create({
                     first_name: profile._json.name,
-                    las_name: '',
+                    last_name: '',
                     email_profile: profile._json.email,
                     age: 18, //Edad por defecto
                     password: createHash(profile._json.email + profile._name )

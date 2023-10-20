@@ -15,12 +15,17 @@ import userRouter from "./routes/users.routes.js";
 import sessionRouter from "./routes/sessions.routes.js";
 import passport from "passport";
 import initializePassport from "./config/passport.js";
+import cookieParser from "cookie-parser";
 
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 const app = express()
 const PORT = 8090
+
+
+app.use(cookieParser()) // Utilizar CookieParser para obtener los datos de la Cookie con JWT
+
 
 
 //CONEXION A LA BASE DE DATOS

@@ -1,5 +1,6 @@
 import { userModel } from './user.models.js';
 
+
 class UserDAO {
     async findAll(limit, page) {
         let query = {};  
