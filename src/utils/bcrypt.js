@@ -1,5 +1,8 @@
 import 'dotenv/config'
 import bcrypt from 'bcrypt'
+
+
+
 //Modulo para encriptar contraseña
 
 export const createHash = (password)=>{

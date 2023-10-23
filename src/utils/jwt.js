@@ -32,10 +32,11 @@ export const authToken = (req, res, next) => {
         if(error){
             return res.status(403).send({error: 'Usuario no autorizado, token invalido'})
         }
+
+        //Usuario valido
+        req.user = credential.user
+        next()
     })
 
-    //Usuario valido
-    req.user = credential.user
-    next()
 }
 

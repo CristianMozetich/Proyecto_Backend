@@ -1,6 +1,7 @@
 import { Router } from "express";
 import passport from "passport";
 import { passportError, authorization } from "../utils/messagesError.js";
+import { generateToken } from '../utils/jwt.js'
 
 const sessionRouter = Router()
 
@@ -17,6 +18,11 @@ sessionRouter.post('/login', passport.authenticate('login'), async (req,res)=>{
             email: req.user.email
 
     }
+
+    const token = generateToken(req.user)
+    res.cookie('jwtCookie', token, {
+        maxAge: 43200000 // 12 horas en milisegundos
+    })
 
     res.status(200).send({ payload: req.user })
   }catch(error){
@@ -67,7 +73,7 @@ sessionRouter.get('/testJWT', passport.authenticate('jwt',{session: false}), (re
 })
 
 sessionRouter.get('/current', passportError('jwt'), authorization('admin'), (req, res) => {
-    res.send(req.user)
+    res.send(req.user) 
 })
 
 export default sessionRouter
