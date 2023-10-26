@@ -20,11 +20,8 @@ sessionRouter.post('/login', passport.authenticate('login'), async (req,res)=>{
     }
 
     const token = generateToken(req.user)
-    res.cookie('jwtCookie', token, {
-        maxAge: 43200000 // 12 horas en milisegundos
-    })
 
-    res.status(200).send({ payload: req.user })
+    res.status(200).send({ token })
   }catch(error){
     res.status(500).send({mensaje: `error al iniciar sesion ${error} `})
   }
@@ -59,7 +56,7 @@ sessionRouter.get('/logout', (req,res)=>{
     if(req.session.login){
         req.session.destroy()
     }
-
+    res.clearCookie('jwtCookie')
     res.status(200).send({resultado: 'Usuario deslogueado'})
 })
 

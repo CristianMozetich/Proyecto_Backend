@@ -10,6 +10,22 @@ import passport from "passport";
 import initializePassport from "./config/passport.js";
 import cookieParser from "cookie-parser";
 import router from "./routes/index.routes.js";
+import cors from 'cors'
+
+
+const whiteList = ['http://localhost:5173/']
+
+
+const corsOptions = {
+    origin: function(origin, callback){
+        if(whiteList.indexOf(origin) != 1 || !origin){
+            callback(null, true)
+        } else{
+            callback(new Error("Acceso denegado"))
+        }  
+    }
+}
+
 
 
 const __filename = fileURLToPath(import.meta.url)
@@ -61,6 +77,9 @@ app.use(session({
 initializePassport()
 app.use(passport.initialize())
 app.use(passport.session())
+
+//MIDDLEWARE CORS
+app.use(cors(corsOptions))
 
 
 //ROUTES
