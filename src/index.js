@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 import express from 'express'
-import { engine } from "express-handlebars";
 import path from "path";
 import { fileURLToPath } from 'url'
 import 'dotenv/config'
@@ -87,29 +86,6 @@ app.use(express.json())
 app.use('/', router)
 
 
-
-
-
-
-//HANDLEBARS
-app.engine('handlebars', engine())
-app.set('view engine', 'handlebars')
-app.set('views', path.resolve(__dirname, './views'))
-
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.get('/login', (req,res)=>{
-    try{
-         res.render('login', {
-            js: "form.js",
-    })
-    } catch{
-        console.error("Error al buscar productos:", error);
-        res.status(500).send("Error interno del servidor");
-    }
-    
-
-})
 
 
 
