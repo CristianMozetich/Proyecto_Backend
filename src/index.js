@@ -1,7 +1,5 @@
 import mongoose from "mongoose";
 import express from 'express'
-import path from "path";
-import { fileURLToPath } from 'url'
 import 'dotenv/config'
 import MongoStore from "connect-mongo";
 import session from "express-session";
@@ -10,6 +8,7 @@ import initializePassport from "./config/passport.js";
 import cookieParser from "cookie-parser";
 import router from "./routes/index.routes.js";
 import cors from 'cors'
+import { __dirname } from "./path.js";
 
 
 const whiteList = ['http://localhost:5173/']
@@ -27,8 +26,7 @@ const corsOptions = {
 
 
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
+
 const app = express()
 const PORT = 8090
 
