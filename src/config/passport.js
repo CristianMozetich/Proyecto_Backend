@@ -26,18 +26,15 @@ const initializePassport = ()=>{
     }
 
     passport.use('jwt', new JWTStrategy({
-        jwtFromRequest: ExtractJWT.fromExtractors([ cookieExtractor ]), // El token va a venir desde cookieExtractor
+        jwtFromRequest: ExtractJWT.fromExtractors([cookieExtractor]), // El token va a venir desde cookieExtractor
         secretOrKey: process.env.JWT_SECRET
 
-    }, async(jwt_payload, done)=>{ //jwt_payload = info del token (en este caso info del cliente)
-        try{
-            console.log("JWT",jwt_payload)
-            return done(null, jwt_payload)
-        }catch(error){
-            return done(error)
-        }
-
-    }))
+    }, (jwt_payload, done) => { // jwt_payload = info del token (en este caso info del cliente)
+        
+        console.log("JWT", jwt_payload);
+        done(null, jwt_payload);
+    }));
+    
 
     passport.use('register', new localStrategy(
     {passReqToCallback: true, usernameField: 'email'}, async (req, username, password, done) =>{

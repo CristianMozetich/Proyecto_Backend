@@ -43,10 +43,10 @@ export const postProduct = async (req,res) => {
     const { title, description, code, price, stock, category } = req.body 
 
     try{
-        const prod = await productModel.create({ title, description, code, price, stock, category })
+        const prod = await productModel.create({ title, description, price, stock, category, code })
 
         if(prod){
-            return res.status(201).send(product)
+            return res.status(201).send(prod)
         } 
         res.status(400).send({ error: "Error en crear producto" })
 
