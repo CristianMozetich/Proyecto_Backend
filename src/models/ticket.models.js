@@ -4,7 +4,6 @@ import { Schema, model } from "mongoose";
 const ticketSchema = new Schema ({
     code:{
         type: String,
-        default: randomUUID(),
         unique: true,
         required: true,
     },
@@ -20,6 +19,13 @@ const ticketSchema = new Schema ({
         type: String,
         required: true,
     },
+})
+
+ticketSchema.pre("save", function (next) {
+    if (!this.code) {
+        this.code = randomUUID()
+    }
+    next()
 })
 
 export const ticketModel = model('ticket', ticketSchema)
