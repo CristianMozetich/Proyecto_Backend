@@ -9,6 +9,10 @@ import cookieParser from "cookie-parser";
 import router from "./routes/index.routes.js";
 import cors from 'cors'
 import { __dirname } from "./path.js";
+import compression from 'express-compression'
+
+
+
 
 
 const whiteList = ['http://localhost:5173/']
@@ -16,7 +20,7 @@ const whiteList = ['http://localhost:5173/']
 
 const corsOptions = {
     origin: function(origin, callback){
-        if(whiteList.indexOf(origin) != 1 || !origin){
+        if(whiteList.indexOf(origin) !== 1 || !origin){
             callback(null, true)
         } else{
             callback(new Error("Acceso denegado"))
@@ -77,6 +81,9 @@ app.use(passport.session())
 
 //MIDDLEWARE CORS
 app.use(cors(corsOptions))
+
+//MIDLEWARE GZIP (SIRVE PARA COMPRIMIR Y MEJORAR VELOCIDAD)
+app.use(compression())
 
 
 //ROUTES

@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker"
 
 
-const modelProduct = () => {
+const modelProduct = async () => {
     return {
         _id: faker.database.mongodbObjectId(),
         title: faker.commerce.productName(),
@@ -15,17 +15,18 @@ const modelProduct = () => {
     }
 }
 
-export const creatRandomProducts = (cantProducts) => {
+export const createRandomProducts = (cantProducts) => {
     const products = []
 
     for(let i = 0; i < cantProducts; i++) {
-        products.push(modelProduct())
+        products.push(modelProduct()) ;
+
     }
 
     return products
 }
 
-//console.log(creatRandomProducts(100))
+console.log(createRandomProducts(100))
 
 
 

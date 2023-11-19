@@ -11,6 +11,8 @@ cartRouter.post('/:cid/products/:pid', updateCartById);
 
 cartRouter.delete('/:cid/products/:pid', deleteAndUpdateCartById);
 
-  cartRouter.delete('/:cid', deleteCart);
+cartRouter.delete('/:cid', deleteCart);
+
+
 
 export default cartRouter

@@ -4,7 +4,7 @@ import { passportError, authorization } from "../utils/messagesError.js";
 
 const productRouter = Router()
 
-productRouter.post('/',  postProduct)
+productRouter.post('/', postProduct)
 
 productRouter.get('/', getProducts)
 
