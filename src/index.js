@@ -58,6 +58,7 @@ mongoose.connect(process.env.MONGO_URL)
 .catch(()=> console.log("Error conexión"))
 
 
+
 //CONEXION A BASE DE DATOS
 app.use(session({
     store: MongoStore.create({
@@ -73,6 +74,7 @@ app.use(session({
     saveUninitialized: false //fuerzo a guardar la sesion a pesar de no tener ningun dato
 
 }))
+
 
 //MIDDLEWARE PASSPORT
 initializePassport()
