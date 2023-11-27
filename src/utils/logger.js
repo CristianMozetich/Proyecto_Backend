@@ -64,7 +64,7 @@ const logger = winston.createLogger({
 
 export const addLogger = ( req, res, next ) => {
     req.logger = logger
-    req.logger.info(
+    req.logger.fatal(
         `${req.method} es ${req.url} - ${new Date().toLocaleTimeString()}`
     )
     next()

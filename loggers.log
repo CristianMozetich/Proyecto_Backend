@@ -1,0 +1,13 @@
+[34minfo[39m: GET es / - 19:12:33
+[34minfo[39m: Hola
+[34minfo[39m: GET es /favicon.ico - 19:12:33
+[34minfo[39m: GET es / - 19:14:38
+[34minfo[39m: GET es / - 19:14:44
+[34minfo[39m: GET es /info - 19:14:47
+[34minfo[39m: Hola
+[34minfo[39m: GET es /favicon.ico - 19:14:47
+[34minfo[39m: GET es /fatal - 19:17:15
+[34minfo[39m: Fatal
+[31mfatal[39m: GET es /fatal - 19:17:41
+[31mfatal[39m: GET es /fatal - 19:17:41
+[34minfo[39m: Fatal

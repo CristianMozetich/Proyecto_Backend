@@ -9,7 +9,8 @@ import cookieParser from "cookie-parser";
 import router from "./routes/index.routes.js";
 import cors from 'cors'
 import { __dirname } from "./path.js";
-import compression from 'express-compression'
+import compression from 'express-compression';
+import { addLogger } from "./utils/logger.js"; 
 
 
 
@@ -95,6 +96,32 @@ app.use('/', router)
 
 
 
+//Routes Logger
+app.use(addLogger)
+app.get('/info', (req, res) => {
+    req.logger.info("Info")
+    res.send("Info!")
+})
+
+app.get('/debug', (req, res) => {
+    req.logger.info("Debug")
+    res.send("debug!")
+})
+
+app.get('/warning', (req, res) => {
+    req.logger.info("Warning")
+    res.send("Warning!")
+})
+
+app.get('/error', (req, res) => {
+    req.logger.info("Error")
+    res.send("Error!")
+})
+
+app.get('/fatal', (req, res) => {
+    req.logger.info("Fatal")
+    res.send("Fatal!")
+})
 
 
 app.listen( PORT, ()=> {
