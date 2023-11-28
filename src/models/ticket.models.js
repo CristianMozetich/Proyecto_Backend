@@ -1,4 +1,4 @@
-import { randomUUID } from "crypto";
+
 import { Schema, model } from "mongoose";
 
 const ticketSchema = new Schema ({
@@ -9,23 +9,18 @@ const ticketSchema = new Schema ({
     },
     purchase_datetime: {
         type: Date,
-        default: Date.now(),
+        default: Date.now,
     },
     amount: {
         type: Number,
         required: true,
     },
-    purcharser: {
+    purchaser: {
         type: String,
         required: true,
     },
 })
 
-ticketSchema.pre("save", function (next) {
-    if (!this.code) {
-        this.code = randomUUID()
-    }
-    next()
-})
+
 
 export const ticketModel = model('ticket', ticketSchema)
