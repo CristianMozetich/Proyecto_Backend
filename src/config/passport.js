@@ -30,9 +30,10 @@ const initializePassport = ()=>{
         secretOrKey: process.env.JWT_SECRET
 
     }, (jwt_payload, done) => { // jwt_payload = info del token (en este caso info del cliente)
-        
-        console.log("JWT", jwt_payload);
-        done(null, jwt_payload);
+
+            console.log("JWT", jwt_payload);
+            done(null, jwt_payload);
+
     }));
     
 

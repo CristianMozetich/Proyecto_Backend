@@ -28,7 +28,6 @@ const userSchema = new Schema({
     },
     rol: {
         type: String,
-        enum: ['user', 'admin'],
         default: 'user'
     },
     cart: {
