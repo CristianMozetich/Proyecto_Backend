@@ -11,6 +11,8 @@ import cors from 'cors'
 import { __dirname } from "./path.js";
 import compression from 'express-compression';
 import { addLogger } from "./utils/logger.js"; 
+import swaggerJSDoc from "swagger-jsdoc";
+import swaggerUiExpress from "swagger-ui-express";
 
 
 
@@ -35,6 +37,21 @@ const corsOptions = {
 const app = express()
 const PORT = 8090
 
+//Swagger (Documentación)
+const swaggerOptions = {
+    definition : {
+        openapi: '3.1.0',
+        info: {
+            title: "Documentación del curso de Backend",
+            description: "Api Coder Backend"
+        }
+    },
+    apis: [`${__dirname}/docs/**/*.yaml`] // ** indica una subcarpeta que no me interesa el nombre, solo interesa la extencion .yaml
+}
+
+
+const spects = swaggerJSDoc(swaggerOptions)
+app.use('/apidocs', swaggerUiExpress.serve, swaggerUiExpress.setup(spects))
 
 app.use(cookieParser()) // Utilizar CookieParser para obtener los datos de la Cookie con JWT
 
