@@ -20,7 +20,7 @@ export const generateToken = ( user ) => {
 
 export const authToken = (req, res, next) => {
     //Consultar al header
-    const authHeader = req.headers.Authorization
+    const authHeader = req.headers.authorization
 
     if(!authHeader){
         return res.status(401).send({ error: 'Usuario no autenticado'})
@@ -39,6 +39,25 @@ export const authToken = (req, res, next) => {
     })
 
 }
+
+// Función de verificación del token
+export const verifyToken = (req, res, next) => {
+    const token = req.cookies.jwtCookie;
+
+    if (!token) {
+        return res.status(401).send({ error: 'Usuario no autenticado' });
+    }
+
+    jwt.verify(token, process.env.JWT_SECRET, (error, decoded) => {
+        if (error) {
+            return res.status(403).send({ error: 'Usuario no autorizado, token inválido' });
+        }
+
+        req.user = decoded.user; // Establecer el usuario decodificado en req.user
+        next(); // Llamar al siguiente middleware o controlador
+    });
+};
+
 
 
 

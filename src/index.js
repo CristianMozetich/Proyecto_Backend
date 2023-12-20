@@ -44,7 +44,7 @@ const swaggerOptions = {
         info: {
             title: "Documentación del curso de Backend",
             description: "Api Coder Backend"
-        }
+        },
     },
     apis: [`${__dirname}/docs/**/*.yaml`] // ** indica una subcarpeta que no me interesa el nombre, solo interesa la extencion .yaml
 }
@@ -110,6 +110,9 @@ app.use(compression())
 app.use(express.json())
 app.use('/', router)
 
+app.listen( PORT, ()=> {
+    console.log(`server conect on port ${PORT} `)
+})
 
 
 
@@ -141,9 +144,6 @@ app.get('/fatal', (req, res) => {
 })
 
 
-app.listen( PORT, ()=> {
-    console.log(`server conect on port ${PORT} `)
-})
 
 
 

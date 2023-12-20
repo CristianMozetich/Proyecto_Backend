@@ -17,7 +17,7 @@ const initializePassport = ()=>{
     const cookieExtractor = req =>{
         console.log(req.cookies)
 
-        const token = req.cookies.jwtCookie ? req.cookies.jwtCookie : {}
+        const token = req.cookies.cookie ? req.cookies.cookie : {}
 
         console.log("cookieExtractor", token)
 
@@ -31,7 +31,8 @@ const initializePassport = ()=>{
 
     }, (jwt_payload, done) => { // jwt_payload = info del token (en este caso info del cliente)
 
-            console.log("JWT", jwt_payload);
+            console.log("jwt", jwt_payload);
+            console.log(process.env.JWT_SECRET)
             done(null, jwt_payload);
 
     }));
