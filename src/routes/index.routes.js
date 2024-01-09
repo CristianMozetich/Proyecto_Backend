@@ -2,7 +2,7 @@ import { Router } from 'express';
 import cartRouter from './cart.routes.js';
 import productRouter from './products.routes.js';
 import sessionRouter from './sessions.routes.js';
-import userRouter from './sessions.routes.js';
+import userRouter from './users.routes.js';
 import mockingRouter from './mocking.routes.js';
 
 

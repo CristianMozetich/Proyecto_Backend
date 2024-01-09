@@ -1,11 +1,15 @@
 import { Router } from "express"
-import { getUser, getUserById, putUserById, deleteUser } from "../controllers/user.controllers.js";
+import { getUser, getUserById, putUserById, deleteUser, updateProfilePicture, updateDocuments, updateProductsImage } from "../controllers/user.controllers.js";
 import crypto from 'crypto'
 import { sendRecoveryMail } from "../config/nodemailer.js";
+import { upload } from "../config/multer.js";
+
 
 const userRouter = Router();
 const recoveryLinks = {}
 
+
+//revisar metodos de recuperación de contraseña
 userRouter.post('/password-recovery', (req, res) => {
     const { email } = req.body;
 
@@ -57,5 +61,13 @@ userRouter.get('/:id', getUserById)
 userRouter.put('/:id', putUserById)
 
 userRouter.delete('/:id', deleteUser)
+
+userRouter.post('/:uid/documents',upload.array('documents'), updateDocuments);
+
+userRouter.post('/:uid/profiles', upload.single('profileImage'), updateProfilePicture)
+
+userRouter.post('/:uid/products', upload.single('productImage'), updateProductsImage)
+
+
 
 export default userRouter

@@ -16,8 +16,7 @@ import swaggerUiExpress from "swagger-ui-express";
 
 
 
-
-
+//CORS
 const whiteList = ['http://localhost:5173/']
 
 
@@ -36,6 +35,7 @@ const corsOptions = {
 
 const app = express()
 const PORT = 8090
+
 
 //Swagger (Documentación)
 const swaggerOptions = {
@@ -106,6 +106,7 @@ app.use(cors(corsOptions))
 app.use(compression())
 
 
+
 //ROUTES
 app.use(express.json())
 app.use('/', router)
@@ -113,6 +114,8 @@ app.use('/', router)
 app.listen( PORT, ()=> {
     console.log(`server conect on port ${PORT} `)
 })
+
+
 
 
 
