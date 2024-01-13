@@ -127,3 +127,7 @@
 [31mfatal[39m: POST es /api/users/123/profiles - 18:26:33
 [31mfatal[39m: POST es /api/users/651333512b0a266d50da8b22/profiles - 18:28:25
 [31mfatal[39m: POST es /api/users/651333512b0a266d50da8b22/profiles - 18:28:25
+[31mfatal[39m: POST es /api/users/ - 22:56:48
+[31mfatal[39m: POST es /api/users/ - 22:56:48
+[31mfatal[39m: DELETE es /api/user/65835f1f8e3f6b9ba7bbf672 - 22:59:13
+[31mfatal[39m: DELETE es /api/user/65835f1f8e3f6b9ba7bbf672 - 22:59:13

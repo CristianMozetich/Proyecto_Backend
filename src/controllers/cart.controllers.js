@@ -107,7 +107,7 @@ export const deleteCart = async (req,res)=>{
   
     try {
       // Busca el carrito por su ID
-      const cart = await cartModel.findById(cid);
+      const cart = await cartModel.findByIdAndDelete(cid);
   
       if (!cart) {
         return res.status(404).json({ respuesta: 'No se pudo encontrar el carrito', mensaje: 'Carrito no encontrado' });

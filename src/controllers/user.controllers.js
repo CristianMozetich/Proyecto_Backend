@@ -1,10 +1,16 @@
 import { userModel } from "../models/user.models.js";
 
 export const getUser = async (req,res)=>{
-    const { limit, page } = req.query;
+    const { page, limit } = req.params
     try {
-        const users = await userModel.findAll(limit, page);
-        res.status(200).send({respuesta: 'ok', mensaje: users})
+        const usersData = await userModel.find(page, limit);
+
+        const principalData = usersData.map(data => ({
+            name: data.first_name,
+            email: data.email,
+            rol: data.rol
+        }))
+        res.status(200).send({respuesta: 'ok', mensaje: principalData})
     } catch (error){
         res.status(400).send({respuesta: 'Error', mensaje: error})
     }
@@ -27,7 +33,7 @@ export const putUserById = async (req,res)=>{
     const {id} = req.params
     const {first_name, last_name, age, email, password} = req.body
     try {
-        const user = await userModel.updateById(id, {first_name, last_name, age, email, password});
+        const user = await userModel.findByIdAndUpdate(id, {first_name, last_name, age, email, password});
         if (user)
             res.status(200).send({respuesta: 'ok', mensaje: user})
         else 
@@ -40,7 +46,7 @@ export const putUserById = async (req,res)=>{
 export const deleteUser = async (req,res)=>{
     const {id} = req.params
     try {
-        const user = await userModel.deleteById(id);
+        const user = await userModel.findByIdAndDelete(id);
         if (user)
             res.status(200).send({respuesta: 'ok', mensaje: user})
         else 
@@ -86,3 +92,4 @@ export const updateProductsImage = async (req, res) => {
         return res.status(500).send({ message: 'Error al intentar subir imagen del producto' })
     }
 }
+

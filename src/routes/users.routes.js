@@ -69,5 +69,4 @@ userRouter.post('/:uid/profiles', upload.single('profileImage'), updateProfilePi
 userRouter.post('/:uid/products', upload.single('productImage'), updateProductsImage)
 
 
-
 export default userRouter

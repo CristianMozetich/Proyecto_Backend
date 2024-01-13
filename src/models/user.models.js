@@ -51,6 +51,7 @@ userSchema.pre('save', async function(next) {
     try{
         const newCart = await cartModel.create({})
         this.cart = newCart._id
+        next()
     }catch(error){
         next(error)
     }

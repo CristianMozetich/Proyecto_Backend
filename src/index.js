@@ -17,7 +17,7 @@ import swaggerUiExpress from "swagger-ui-express";
 
 
 //CORS
-const whiteList = ['http://localhost:5173/']
+const whiteList = ['http://localhost:3000/']
 
 
 const corsOptions = {
@@ -53,25 +53,15 @@ const swaggerOptions = {
 const spects = swaggerJSDoc(swaggerOptions)
 app.use('/apidocs', swaggerUiExpress.serve, swaggerUiExpress.setup(spects))
 
-app.use(cookieParser()) // Utilizar CookieParser para obtener los datos de la Cookie con JWT
 
+
+app.use(cookieParser()) // Utilizar CookieParser para obtener los datos de la Cookie con JWT
 
 
 //CONEXION A LA BASE DE DATOS
 mongoose.connect(process.env.MONGO_URL)
 .then(async ()=>{
-    
     console.log("BDD CONECTADA")
-
-    //const resultados = await productModel.paginate(  { page: 1, sort: '' }, { query: '123', limit: 2 } )
-
-    //console.log(resultados)
-
-    /*const resultados = await cartModel.findOne({_id: '65034e62a405b34e7a9d6a8c'})
-
-    console.log(JSON.stringify(resultados))*/
-
-    
 } )
 .catch(()=> console.log("Error conexión"))
 
