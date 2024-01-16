@@ -1,4 +1,5 @@
 import { generateToken } from "../utils/jwt.js";
+import { sendInactiveUserEmail } from "../config/nodemailer.js";
 
 
 export const login = async (req,res)=>{
@@ -41,5 +42,29 @@ export const logout = async (req,res)=>{
     }
     res.clearCookie('jwtCookie')
     res.status(200).send({resultado: 'Usuario deslogueado'})
+}
+
+export const deleteInactiveSessions = async (req,res) => {
+    try{
+        const inactiveUsers = await userModel.find({
+            last_connection: { $lt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000 )},
+        })
+
+        inactiveUsers.forEach((user) => {
+            if (user.email) {
+              req.session.destroy(user.email, (err) => {
+                if (err) {
+                  console.error('Error destroying session:', err);
+                }
+              });
+            }
+      
+            sendInactiveUserEmail(user.email);
+          });
+
+        res.status(200).send({ respuesta: 'ok', message: 'Su sesión caducó'})
+    }catch{
+        res.status(500).send({ respuesta: 'Error', message: 'No pudimos cerrar la sesión'})
+    }
 }
 

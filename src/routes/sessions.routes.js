@@ -1,7 +1,7 @@
 import { Router } from "express";
 import passport from "passport";
 import { passportError, authorization } from "../utils/messagesError.js";
-import { login, register, logout } from "../controllers/sessions.controllers.js";
+import { login, register, logout, deleteInactiveSessions } from "../controllers/sessions.controllers.js";
 
 const sessionRouter = Router()
 
@@ -11,6 +11,9 @@ sessionRouter.post('/register', passport.authenticate('register'), register)
 
 //LOGOUT
 sessionRouter.get('/logout', logout)
+
+//INACTIVESESSION
+sessionRouter.delete('/deleteSession', deleteInactiveSessions)
 
 
 sessionRouter.get('/testJWT', passport.authenticate('jwt',{session: false}), (req,res) => {

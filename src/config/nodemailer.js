@@ -36,3 +36,20 @@ export const sendRecoveryMail = (email, recoveryLink) => {
     });
 };
 
+export const sendInactiveUserEmail = (email) => {
+    const mailOptions = {
+        from: 'mozetichcristian@gmail.com',
+        to: email,
+        subject: 'Automatic Logout Notification',
+        text: 'Dear User,\n\nYou have been automatically logged out due to inactivity.\n\nIf you have any questions, please log in again.\n\nThank you.'
+    }
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Inactive user logout notification email sent successfully');
+        }
+      });
+}
+

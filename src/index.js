@@ -17,7 +17,7 @@ import swaggerUiExpress from "swagger-ui-express";
 
 
 //CORS
-const whiteList = ['http://localhost:3000/']
+const whiteList = ['http://localhost:5173']
 
 
 const corsOptions = {

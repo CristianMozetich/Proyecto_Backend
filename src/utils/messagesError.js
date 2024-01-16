@@ -21,14 +21,20 @@ export const passportError = (strategy) =>{ //Voy a enviar local, github o jwt
 
 //Recibo un rol y establezco la capacidad del usuario
 export const authorization = (rol) => {
-    return async (req,res,next) => {
-        if(!req.user){
-            return res.status(401).send({error: 'user no autorizado'})
+    return async (req, res, next) => {
+      try {
+        if (!req.user) {
+          return res.status(401).send({ error: 'Usuario no autorizado - Falta de autenticación' });
         }
-        if(req.user.user.rol != rol){
-            return res.status(403).send({error: 'Usuario no tiene los permisos necesarios '})
+  
+        if (req.user.rol !== rol) {
+          return res.status(403).send({ error: 'Usuario no tiene los permisos necesarios' });
         }
-        next()
-    }
-
-}
+  
+        next();
+      } catch (error) {
+        res.status(500).send({ error: 'Error en la autenticación' });
+      }
+    };
+  };
+  

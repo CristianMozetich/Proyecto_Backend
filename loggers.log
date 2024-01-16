@@ -131,3 +131,13 @@
 [31mfatal[39m: POST es /api/users/ - 22:56:48
 [31mfatal[39m: DELETE es /api/user/65835f1f8e3f6b9ba7bbf672 - 22:59:13
 [31mfatal[39m: DELETE es /api/user/65835f1f8e3f6b9ba7bbf672 - 22:59:13
+[31mfatal[39m: DELETE es /api/sessions/login - 09:22:36
+[31mfatal[39m: DELETE es /api/sessions/login - 09:22:36
+[31mfatal[39m: DELETE es /api/sessions/login - 09:22:39
+[31mfatal[39m: DELETE es /api/sessions/login - 09:22:39
+[31mfatal[39m: DELETE es /api/sessions/login - 09:22:42
+[31mfatal[39m: DELETE es /api/sessions/login - 09:22:42
+[31mfatal[39m: DELETE es /api/sessions/login - 09:22:47
+[31mfatal[39m: DELETE es /api/sessions/login - 09:22:47
+[31mfatal[39m: POST es /api/sessions/logout - 11:11:51
+[31mfatal[39m: POST es /api/sessions/logout - 11:11:51
