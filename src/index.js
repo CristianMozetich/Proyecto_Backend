@@ -68,20 +68,24 @@ mongoose.connect(process.env.MONGO_URL)
 
 
 //CONEXION A BASE DE DATOS
-app.use(session({
-    store: MongoStore.create({
-        mongoUrl: process.env.MONGO_URL,
-        mongoOptions: {
-            useNewUrlparser: true, // establezco que la conexion sea mediante URL
-            useUnifiedTopology: true, //manejo de clusters de manera dinamica 
-        },
-        ttl: 60
-    }),
-    secret: process.env.SESSION_SECRET,
-    resave: false, //fuerzo a que se intente guardar a pesar de no tener modificacion en los datos
-    saveUninitialized: false //fuerzo a guardar la sesion a pesar de no tener ningun dato
+try {
+    app.use(session({
+        store: MongoStore.create({
+            mongoUrl: process.env.MONGO_URL,
+            mongoOptions: {
+                useNewUrlParser: true,
+                useUnifiedTopology: true,
+            },
+            ttl: 60
+        }),
+        secret: process.env.SESSION_SECRET,
+        resave: false,
+        saveUninitialized: false
+    }));
+} catch (error) {
+    console.error('Error configuring session:', error);
+}
 
-}))
 
 
 //MIDDLEWARE PASSPORT
