@@ -28,7 +28,7 @@ export const getProductById = async (req,res) => {
         const prod = await productModel.findById(id)
 
         if(prod){
-            return res.status(200).send(product)
+            return res.status(200).send(prod)
         } 
         res.status(404).send({error: "Productos no encontrados"})    
     }catch (error){

@@ -17,18 +17,18 @@ import swaggerUiExpress from "swagger-ui-express";
 
 
 //CORS
-const whiteList = ['http://localhost:5173']
-
+const whiteList = ['http://localhost:5173'];
 
 const corsOptions = {
-    origin: function(origin, callback){
-        if(whiteList.indexOf(origin) !== 1 || !origin){
-            callback(null, true)
-        } else{
-            callback(new Error("Acceso denegado"))
+    origin: function(origin, callback) {
+        if (whiteList.indexOf(origin) !== -1 || !origin) {
+            callback(null, true);
+        } else {
+            callback(new Error("Acceso denegado"));
         }  
     }
-}
+};
+
 
 
 
@@ -59,7 +59,7 @@ app.use(cookieParser()) // Utilizar CookieParser para obtener los datos de la Co
 
 
 //CONEXION A LA BASE DE DATOS
-mongoose.connect(process.env.MONGO_URL)
+mongoose.connect('mongodb+srv://cristianmozetich:Osito1991@cluster0.d7svold.mongodb.net/?retryWrites=true&w=majority')
 .then(async ()=>{
     console.log("BDD CONECTADA")
 } )
@@ -71,7 +71,7 @@ mongoose.connect(process.env.MONGO_URL)
 try {
     app.use(session({
         store: MongoStore.create({
-            mongoUrl: process.env.MONGO_URL,
+            mongoUrl: 'mongodb+srv://cristianmozetich:Osito1991@cluster0.d7svold.mongodb.net/?retryWrites=true&w=majority',
             mongoOptions: {
                 useNewUrlParser: true,
                 useUnifiedTopology: true,
