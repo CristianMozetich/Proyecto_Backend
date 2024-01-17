@@ -59,7 +59,7 @@ app.use(cookieParser()) // Utilizar CookieParser para obtener los datos de la Co
 
 
 //CONEXION A LA BASE DE DATOS
-mongoose.connect('mongodb+srv://cristianmozetich:Osito1991@cluster0.d7svold.mongodb.net/?retryWrites=true&w=majority')
+mongoose.connect(process.env.MONGO_URL)
 .then(async ()=>{
     console.log("BDD CONECTADA")
 } )
@@ -71,7 +71,7 @@ mongoose.connect('mongodb+srv://cristianmozetich:Osito1991@cluster0.d7svold.mong
 try {
     app.use(session({
         store: MongoStore.create({
-            mongoUrl: 'mongodb+srv://cristianmozetich:Osito1991@cluster0.d7svold.mongodb.net/?retryWrites=true&w=majority',
+            mongoUrl: process.env.MONGO_URL,
             mongoOptions: {
                 useNewUrlParser: true,
                 useUnifiedTopology: true,
