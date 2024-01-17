@@ -105,6 +105,12 @@ app.use(compression())
 app.use(express.json())
 app.use('/', router)
 
+
+//Raíz de la app
+app.get('/', (req, res) => {
+    res.send('¡Backend, Coderhouse!');
+  });
+
 app.listen( PORT, ()=> {
     console.log(`server conect on port ${PORT} `)
 })
