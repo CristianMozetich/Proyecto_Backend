@@ -46,7 +46,7 @@ export const updateCartById = async (req,res)=>{
                 const cartIndice = cart.products.findIndex(prod => prod.id_prod === pid);
 
                 if (cartIndice !== -1) {
-                    cart.products[cartIndice].quantity = quantity;
+                    cart.products[cartIndice].quantity += quantity;
                 } else {
                     cart.products.push({ id_prod: pid, quantity: quantity });
                 }
@@ -83,11 +83,11 @@ export const deleteAndUpdateCartById = async (req,res)=>{
         return res.status(404).json({ respuesta: 'No se pudo encontrar el producto', mensaje: 'Producto no encontrado' });
       }
   
-      const cartIndex = cart.products.findIndex((prod) => prod.id_prod === pid);
+      const cartIndex = cart.products.findIndex((prod) => prod.id_prod.equals(pid));
   
       if (cartIndex !== -1) {
         // Utiliza filter para eliminar el producto del carrito en memoria
-        cart.products = cart.products.filter((prod) => prod.id_prod !== pid);
+        cart.products = cart.products.filter((prod) => !prod.id_prod.equals(pid));
   
         // Actualiza el carrito utilizando findByIdAndUpdate
         const respuesta = await cartModel.findByIdAndUpdate(cid, cart, { new: true });
