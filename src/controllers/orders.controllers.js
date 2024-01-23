@@ -16,14 +16,14 @@ export const purchaseCart = async (req, res) => {
         }
 
             for(const item of cart.products){
-                const products = productModel.findById(item.id_prod);
+                const products = await productModel.findById(item.id_prod);
 
                 if(!products){
                     purchaseFail.push(item.id_prod);
                     continue;
                 }
 
-            if( products.stock >= item.quantity ){
+            if( products && products.stock >= item.quantity ){
             products.stock -= item.quantity;
             await products.save()
             purchasedProducts.push(item);
@@ -44,7 +44,7 @@ export const purchaseCart = async (req, res) => {
                 purchaser: req.user.email
             })
 
-            cart.products= cart.products.filter(item => !purchasedProducts.includes(item));
+            cart.products= cart.products.filter(item => !purchasedProducts.some(item));
             await cart.save();
 
             return res.status(200).send({respuesta: 'Ticket generado exitosamente', mensaje: ticket})
