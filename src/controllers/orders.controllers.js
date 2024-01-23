@@ -34,17 +34,19 @@ export const purchaseCart = async (req, res) => {
 
         if(purchasedProducts.length > 0){
             const totalAmount = purchasedProducts.reduce((total, item)=> {
-                const product = cart.products.find(p=> p.id_prod.equals(item.id_prod));
+                const product = cart.products.find(p => p.id_prod.equals(item.id_prod));
                 return total + product.quantity * product.id_prod.price;
             }, 0)
+            
 
             const ticket = await ticketModel.create({
                 code: uuidv4(),
                 amount: totalAmount,
                 purchaser: req.user.email
             })
+    
 
-            cart.products= cart.products.filter(item => !purchasedProducts.some(item));
+            cart.products= cart.products.filter(item => !purchasedProducts.includes(item));
             await cart.save();
 
             return res.status(200).send({respuesta: 'Ticket generado exitosamente', mensaje: ticket})
