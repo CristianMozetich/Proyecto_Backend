@@ -5,7 +5,7 @@ import 'dotenv/config'
 import Stripe from "stripe"
 
 //STRIPE
-const stripeSecretKey = process.env.STRIPE_SECRET_KEY
+const stripeSecretKey = process.env.STRIPE
 
 
 //PurchaseCart NO FUNCIONA CORRECTAMENTE
@@ -81,6 +81,10 @@ export const checkout = async (req, res) => {
             description: description,
             payment_method: id,
             confirm: true
+        },{
+            headers: {
+                Authorization: `Bearer ${process.env.STRIPE}`
+            }
         })
 
         console.log(payment)
