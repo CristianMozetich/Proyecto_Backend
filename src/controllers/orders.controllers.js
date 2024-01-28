@@ -79,6 +79,10 @@ export const checkout = async (req, res) => {
             currency: 'EUR',
             payment_method: id,
             confirm: true
+        }, {
+            headers: {
+                Authorization: `Bearer ${stripeSecretKey}`,
+              },
         })
 
         console.log(payment)
