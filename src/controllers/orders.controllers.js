@@ -8,7 +8,7 @@ import Stripe from "stripe";
 
 
 //STRIPE
-const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+const stripeSecretKey = 'sk_test_51ObSiJHTCFs5XNPnQsneQfCZtbZbw6TxgwQwKAWIzWWgR9UN5enn3iBHvqOBnC7dZJAoZllQbrcpcm02MGCfUMIq0087tmNld2';
 console.log('Stripe Secret Key:', stripeSecretKey);
 const stripe = new Stripe(stripeSecretKey, {
     apiVersion: '2023-10-16',
