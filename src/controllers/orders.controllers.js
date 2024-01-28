@@ -1,7 +1,10 @@
 import { cartModel } from "../models/cart.models.js";
 import { ticketModel } from "../models/ticket.models.js";
 import { productModel } from "../models/products.models.js";
-import stripe from "stripe"
+import Stripe from "stripe"
+
+//STRIPE
+const stripe = new Stripe(process.env.STRIPE)
 
 
 //PurchaseCart NO FUNCIONA CORRECTAMENTE
@@ -63,5 +66,22 @@ export const purchaseCart = async (req, res) => {
 }
 
 export const checkout = async (req, res) => {
-    console.log(req.body)
+    const { id, amount, description } = req.body
+
+    try{
+        const payment = await stripe.paymentIntents.create({
+            amount,
+            currency: 'EU',
+            description: description,
+            payment_method: id,
+            confirm: true
+        })
+
+        console.log(payment)
+
+        res.send({ message: 'Successful payment' })
+
+    } catch(error){
+
+    }
 }
