@@ -82,6 +82,6 @@ export const checkout = async (req, res) => {
         res.send({ message: 'Successful payment' })
 
     } catch(error){
-
+        res.send({ message: 'No se pudo realizar el pago' })
     }
 }
