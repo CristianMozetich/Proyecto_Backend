@@ -16,7 +16,7 @@ cartRouter.delete('/:cid/products/:pid', deleteAndUpdateCartById);
 
 cartRouter.delete('/:cid', deleteCart);
 
-cartRouter.post('/:cid/purchase', passportError('jwt'), checkout)
+cartRouter.post('/:cid/purchase',  checkout)
 
 
 
