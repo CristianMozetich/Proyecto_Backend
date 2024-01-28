@@ -5,9 +5,7 @@ import 'dotenv/config'
 import Stripe from "stripe"
 
 //STRIPE
-const stripe = new Stripe(process.env.STRIPE, {
-    apiVersion: '2023-10-16',
-  })
+
 
 
 //PurchaseCart NO FUNCIONA CORRECTAMENTE
@@ -69,6 +67,11 @@ export const purchaseCart = async (req, res) => {
 }
 
 export const checkout = async (req, res) => {
+
+    const stripe = new Stripe(process.env.STRIPE, {
+        apiVersion: '2023-10-16',
+      })
+      
     const { id, amount, description } = req.body
 
     try{
