@@ -71,7 +71,7 @@ export const checkout = async (req, res) => {
     try{
         const payment = await stripe.paymentIntents.create({
             amount,
-            currency: 'EU',
+            currency: 'EUR',
             description: description,
             payment_method: id,
             confirm: true
@@ -82,6 +82,7 @@ export const checkout = async (req, res) => {
         res.send({ message: 'Successful payment' })
 
     } catch(error){
+        console.error('Error processing payment:', error);
         res.send({ message: 'No se pudo realizar el pago' })
     }
 }
