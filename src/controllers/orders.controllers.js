@@ -8,7 +8,7 @@ import Stripe from "stripe";
 
 
 //STRIPE
-const stripeSecretKey = 'sk_test_51ObSiJHTCFs5XNPnQsneQfCZtbZbw6TxgwQwKAWIzWWgR9UN5enn3iBHvqOBnC7dZJAoZllQbrcpcm02MGCfUMIq0087tmNld2';
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 console.log('Stripe Secret Key:', stripeSecretKey);
 const stripe = new Stripe(stripeSecretKey, {
     apiVersion: '2023-10-16',
@@ -83,7 +83,8 @@ export const checkout = async (req, res) => {
             currency: 'EUR',
             payment_method: id,
             confirm: true,
-            setup_future_usage: 'off_session'
+            setup_future_usage: 'off_session',
+            return_url: 'https://backend-coderhouse-b16n.onrender.com/'
         })
 
         console.log(payment)
