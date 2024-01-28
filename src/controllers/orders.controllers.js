@@ -2,17 +2,9 @@ import 'dotenv/config'
 import { cartModel } from "../models/cart.models.js";
 import { ticketModel } from "../models/ticket.models.js";
 import { productModel } from "../models/products.models.js";
-import Stripe from "stripe";
+import { stripe } from '../index.js';
 
 
-
-
-//STRIPE
-const stripeSecretKey = 'sk_test_51ObSiJHTCFs5XNPnQsneQfCZtbZbw6TxgwQwKAWIzWWgR9UN5enn3iBHvqOBnC7dZJAoZllQbrcpcm02MGCfUMIq0087tmNld2';
-console.log('Stripe Secret Key:', stripeSecretKey);
-const stripe = new Stripe(stripeSecretKey, {
-    apiVersion: '2023-10-16',
-  })
 
 
 //PurchaseCart NO FUNCIONA CORRECTAMENTE
