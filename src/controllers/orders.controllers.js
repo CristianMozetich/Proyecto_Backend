@@ -6,6 +6,9 @@ import Stripe from "stripe"
 
 //STRIPE
 const stripeSecretKey = process.env.STRIPE
+const stripe = new Stripe(stripeSecretKey, {
+    apiVersion: '2023-10-16',
+  })
 
 
 //PurchaseCart NO FUNCIONA CORRECTAMENTE
@@ -68,10 +71,6 @@ export const purchaseCart = async (req, res) => {
 
 export const checkout = async (req, res) => {
 
-    const stripe = new Stripe(stripeSecretKey, {
-        apiVersion: '2023-10-16',
-      })
-
     const { id, amount } = req.body
 
     try{
@@ -80,11 +79,6 @@ export const checkout = async (req, res) => {
             currency: 'EUR',
             payment_method: id,
             confirm: true
-        },{
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${stripeSecretKey}`
-            }
         })
 
         console.log(payment)
