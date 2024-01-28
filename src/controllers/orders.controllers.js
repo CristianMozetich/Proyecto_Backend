@@ -4,7 +4,7 @@ import { productModel } from "../models/products.models.js";
 import stripe from "stripe"
 
 
-
+//PurchaseCart NO FUNCIONA CORRECTAMENTE
 export const purchaseCart = async (req, res) => {
     const {cid} = req.params
 
@@ -63,5 +63,5 @@ export const purchaseCart = async (req, res) => {
 }
 
 export const checkout = async (req, res) => {
-    console.log('checkout')
+    console.log(req.body)
 }
