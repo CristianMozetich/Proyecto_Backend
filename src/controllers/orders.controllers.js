@@ -81,6 +81,11 @@ export const checkout = async (req, res) => {
             description: description,
             payment_method: id,
             confirm: true
+        },{
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${stripeSecretKey}`
+            }
         })
 
         console.log(payment)
