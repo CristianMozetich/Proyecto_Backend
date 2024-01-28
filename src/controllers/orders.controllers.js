@@ -1,8 +1,9 @@
+import 'dotenv/config'
 import { cartModel } from "../models/cart.models.js";
 import { ticketModel } from "../models/ticket.models.js";
 import { productModel } from "../models/products.models.js";
 import Stripe from "stripe";
-import 'dotenv/config'
+
 
 
 
