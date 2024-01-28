@@ -5,7 +5,9 @@ import 'dotenv/config'
 import Stripe from "stripe"
 
 //STRIPE
-const stripe = new Stripe(process.env.STRIPE)
+const stripe = new Stripe(process.env.STRIPE, {
+    apiVersion: '2023-10-16',
+  })
 
 
 //PurchaseCart NO FUNCIONA CORRECTAMENTE
