@@ -87,8 +87,6 @@ try {
     console.error('Error configuring session:', error);
 }
 
-//STRIPE
-export const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 
 //MIDDLEWARE CORS
 app.use(cors(corsOptions))
