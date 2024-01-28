@@ -72,13 +72,12 @@ export const checkout = async (req, res) => {
         apiVersion: '2023-10-16',
       })
 
-    const { id, amount, description } = req.body
+    const { id, amount } = req.body
 
     try{
         const payment = await stripe.paymentIntents.create({
             amount,
             currency: 'EUR',
-            description: description,
             payment_method: id,
             confirm: true
         },{
