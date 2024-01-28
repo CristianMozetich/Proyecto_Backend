@@ -50,17 +50,20 @@ export const deleteInactiveSessions = async (req,res) => {
             last_connection: { $lt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000 )},
         })
 
-        inactiveUsers.forEach((user) => {
+        await Promise.all(inactiveUsers.map(async (user) => {
             if (user.email) {
-              req.session.destroy(user.email, (err) => {
-                if (err) {
-                  console.error('Error destroying session:', err);
-                }
-              });
+                await new Promise((resolve) => {
+                    req.session.destroy(user.email, (err) => {
+                        if (err) {
+                            console.error('Error destroying session:', err);
+                        }
+                        resolve();
+                    });
+                });
             }
-      
+        
             sendInactiveUserEmail(user.email);
-          });
+        }));
 
         res.status(200).send({ respuesta: 'ok', message: 'Su sesión caducó'})
     }catch{

@@ -13,6 +13,7 @@ import compression from 'express-compression';
 import { addLogger } from "./utils/logger.js"; 
 import swaggerJSDoc from "swagger-jsdoc";
 import swaggerUiExpress from "swagger-ui-express";
+import stripe from 'stripe'
 
 
 
@@ -86,15 +87,17 @@ try {
     console.error('Error configuring session:', error);
 }
 
+//STRIPE
+stripe(process.env.STRIPE)
 
+//MIDDLEWARE CORS
+app.use(cors(corsOptions))
 
 //MIDDLEWARE PASSPORT
 initializePassport()
 app.use(passport.initialize())
 app.use(passport.session())
 
-//MIDDLEWARE CORS
-app.use(cors(corsOptions))
 
 //MIDLEWARE GZIP (SIRVE PARA COMPRIMIR Y MEJORAR VELOCIDAD)
 app.use(compression())

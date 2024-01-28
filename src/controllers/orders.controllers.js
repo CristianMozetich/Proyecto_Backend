@@ -1,7 +1,9 @@
 import { cartModel } from "../models/cart.models.js";
 import { ticketModel } from "../models/ticket.models.js";
 import { productModel } from "../models/products.models.js";
-import { v4 as uuidv4 } from 'uuid';
+import stripe from "stripe"
+
+
 
 export const purchaseCart = async (req, res) => {
     const {cid} = req.params
@@ -40,17 +42,17 @@ export const purchaseCart = async (req, res) => {
             
 
             const ticket = await ticketModel.create({
-                code: uuidv4(),
+                code: req.user._id,
                 amount: totalAmount,
                 purchaser: req.user.email
             })
     
-
             cart.products= cart.products.filter(item => !purchasedProducts.includes(item));
             await cart.save();
 
             return res.status(200).send({respuesta: 'Ticket generado exitosamente', mensaje: ticket})
         }else {
+
             return res.status(404).send({respuesta: 'Error al generar ticket', mensaje: 'Error'})
         }
 
@@ -58,4 +60,8 @@ export const purchaseCart = async (req, res) => {
         console.error(error)
         res.status(500).send({error: 'Error al finalizar compra'})
     }
+}
+
+export const checkout = async (req, res) => {
+    console.log('checkout')
 }

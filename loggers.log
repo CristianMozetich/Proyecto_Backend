@@ -227,3 +227,5 @@
 [31mfatal[39m: GET es /api/carts/ - 18:54:42
 [31mfatal[39m: GET es /api/carts/ - 18:54:42
 [31mfatal[39m: GET es /api/carts/ - 18:54:42
+[31mfatal[39m: GET es /api/carts/65ac2e705e66a83aab94a784/purchase - 21:26:56
+[31mfatal[39m: GET es /api/carts/65ac2e705e66a83aab94a784/purchase - 21:26:56

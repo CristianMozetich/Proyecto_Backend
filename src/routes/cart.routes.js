@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { getCartById, deleteAndUpdateCartById, deleteCart, postCart, updateCartById } from "../controllers/cart.controllers.js";
-import { purchaseCart } from "../controllers/orders.controllers.js";
+import { checkout, purchaseCart } from "../controllers/orders.controllers.js";
+import { passportError, authorization } from "../utils/messagesError.js";
 
 
 const cartRouter = Router()
@@ -15,7 +16,7 @@ cartRouter.delete('/:cid/products/:pid', deleteAndUpdateCartById);
 
 cartRouter.delete('/:cid', deleteCart);
 
-cartRouter.post('/:cid/purchase', purchaseCart)
+cartRouter.post('/:cid/purchase', checkout)
 
 
 
