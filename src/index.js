@@ -88,7 +88,7 @@ try {
 }
 
 //STRIPE
-export const stripeSecretKey = process.env.STRIPE_SECRET_KEY
+export const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 
 //MIDDLEWARE CORS
 app.use(cors(corsOptions))

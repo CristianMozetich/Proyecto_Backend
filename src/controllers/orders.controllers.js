@@ -2,8 +2,9 @@ import { cartModel } from "../models/cart.models.js";
 import { ticketModel } from "../models/ticket.models.js";
 import { productModel } from "../models/products.models.js";
 import 'dotenv/config'
-import Stripe from "stripe"
+import Stripe from "stripe";
 import { stripeSecretKey } from "../index.js";
+
 
 //STRIPE
 const stripe = new Stripe(stripeSecretKey, {
@@ -79,10 +80,6 @@ export const checkout = async (req, res) => {
             currency: 'EUR',
             payment_method: id,
             confirm: true
-        }, {
-            headers: {
-                Authorization: `Bearer ${stripeSecretKey}`,
-              },
         })
 
         console.log(payment)
