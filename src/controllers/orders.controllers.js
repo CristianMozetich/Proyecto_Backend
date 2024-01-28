@@ -83,8 +83,7 @@ export const checkout = async (req, res) => {
             currency: 'EUR',
             payment_method: id,
             confirm: true,
-            setup_future_usage: 'off_session',  // Asegúrate de incluir esto
-            return_url: 'https://http://localhost:5173'
+            setup_future_usage: 'off_session'
         })
 
         console.log(payment)
