@@ -3,9 +3,9 @@ import { ticketModel } from "../models/ticket.models.js";
 import { productModel } from "../models/products.models.js";
 import 'dotenv/config'
 import Stripe from "stripe"
+import { stripeSecretKey } from "../index.js";
 
 //STRIPE
-const stripeSecretKey = process.env.STRIPE_SECRET_KEY
 const stripe = new Stripe(stripeSecretKey, {
     apiVersion: '2023-10-16',
   })
