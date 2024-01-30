@@ -70,9 +70,8 @@ export const checkout = async (req, res) => {
     const { id, amount } = req.body
 
     try{
-
-
-        res.send({ message: 'Successful payment' })
+        
+        res.send({ message: 'Successful payment', id, amount })
 
     } catch(error){
         console.error('Error processing payment:', error);
