@@ -13,8 +13,6 @@ import compression from 'express-compression';
 import { addLogger } from "./utils/logger.js"; 
 import swaggerJSDoc from "swagger-jsdoc";
 import swaggerUiExpress from "swagger-ui-express";
-import Stripe from "stripe";
-
 
 
 
@@ -32,12 +30,6 @@ const corsOptions = {
 };
 
 
-//STRIPE
-const stripeSecretKey = (process.env.STRIPE_SECRET_KEY);
-console.log('Stripe Secret Key:', stripeSecretKey);
-export const stripe = new Stripe(stripeSecretKey, {
-    apiVersion: '2023-10-16',
-  })
 
 
 

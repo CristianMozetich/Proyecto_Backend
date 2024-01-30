@@ -2,8 +2,14 @@ import 'dotenv/config'
 import { cartModel } from "../models/cart.models.js";
 import { ticketModel } from "../models/ticket.models.js";
 import { productModel } from "../models/products.models.js";
-import { stripe } from '../index.js';
+import Stripe from "stripe";
 
+//STRIPE
+const stripeSecretKey = (process.env.STRIPE_SECRET_KEY);
+console.log('Stripe Secret Key:', stripeSecretKey);
+export const stripe = new Stripe(stripeSecretKey, {
+    apiVersion: '2023-10-16',
+})
 
 
 
@@ -70,7 +76,7 @@ export const checkout = async (req, res) => {
     const { id, amount } = req.body
 
     try{
-        
+
         res.send({ message: 'Successful payment', id, amount })
 
     } catch(error){
