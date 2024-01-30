@@ -70,16 +70,7 @@ export const checkout = async (req, res) => {
     const { id, amount } = req.body
 
     try{
-        const payment = await stripe.paymentIntents.create({
-            amount,
-            currency: 'EUR',
-            payment_method: id,
-            confirm: true,
-            setup_future_usage: 'off_session',
-            return_url: 'https://backend-coderhouse-b16n.onrender.com/'
-        })
 
-        console.log(payment)
 
         res.send({ message: 'Successful payment' })
 
