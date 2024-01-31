@@ -1,4 +1,5 @@
 import { userModel } from "../models/user.models.js";
+import { productModel } from "../models/products.models.js";
 
 export const getUser = async (req,res)=>{
     const { page, limit } = req.params
@@ -86,6 +87,30 @@ export const updateProductsImage = async (req, res) => {
         if(!req.file){
             return res.status(400).send({ message: 'Error al cargar la imagen del producto' })
         }
+            // Aquí deberías tener información sobre el producto asociado a la imagen
+        const productId = req.params.uid;
+
+        // Actualiza el documento del producto con la información de la imagen
+        const product = await productModel.findByIdAndUpdate(
+        productId,
+        {
+            $push: {
+            thumbnails: {
+                filename: req.file.filename,
+                path: req.file.path,
+            },
+            },
+        },
+        { new: true }
+        );
+
+        console.log('Product ID:', productId);
+        console.log('File Information:', req.file);
+
+        if (!product) {
+            return res.status(404).send({ message: 'Producto no encontrado' });
+          }
+
         return res.status(200).send({ message: 'Imagen del producto cargada exitosamente' })
 
     }catch{

@@ -6,7 +6,7 @@ import Stripe from "stripe";
 
 //STRIPE
 const stripeSecretKey = (process.env.STRIPE_SECRET_KEY);
-console.log('Stripe Secret Key:', stripeSecretKey);
+
 export const stripe = new Stripe(stripeSecretKey, {
     apiVersion: '2023-10-16',
 })

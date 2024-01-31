@@ -32,7 +32,10 @@ const productSchema = new Schema ({
         type: String,
         unique: true
     },
-    thumbnails : []
+    thumbnails : [{
+        filename: String,
+        path: String
+    }]
 })
 
 productSchema.plugin(paginate)
