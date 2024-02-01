@@ -3,6 +3,7 @@ import { getUser, getUserById, putUserById, deleteUser, updateProfilePicture, up
 import crypto from 'crypto'
 import { sendRecoveryMail } from "../config/nodemailer.js";
 import { upload } from "../config/multer.js";
+import getImageById from "../controllers/img.controllers.js";
 
 
 const userRouter = Router();
@@ -68,5 +69,6 @@ userRouter.post('/:uid/profiles', upload.single('profileImage'), updateProfilePi
 
 userRouter.post('/:uid/products', upload.single('productImage'), updateProductsImage)
 
+userRouter.get('/images/:filename', getImageById);
 
 export default userRouter
