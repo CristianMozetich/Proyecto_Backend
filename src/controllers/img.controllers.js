@@ -7,7 +7,7 @@ const __dirname = path.dirname(__filename);
 
 const getImageById = (req, res) => {
   const { filename } = req.params;
-  const imagePath = express.static(path.join(__dirname, '../../upload/products', filename));
+  const imagePath = path.join(__dirname, '../../upload/products', filename);
 
   // Verifica si la imagen existe
   if (fs.existsSync(imagePath)) {
