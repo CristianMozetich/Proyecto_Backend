@@ -104,6 +104,8 @@ app.use(compression())
 
 //ROUTES
 app.use(express.json())
+// Configuración para servir imágenes estáticas
+app.use('/api/users/images', express.static(path.join(__dirname, 'upload', 'products')));
 app.use('/', router)
 
 
