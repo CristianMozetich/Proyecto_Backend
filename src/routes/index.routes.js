@@ -10,12 +10,11 @@ import path from 'path';
 
 const router = Router()
 
-
-//ROUTES
-router.use('/api/users', userRouter)
 // Configura express.static para manejar archivos estáticos en la ruta /api/users/images
 router.use('/api/users/images', express.static(path.join(__dirname, '../../upload/products')));
 
+//ROUTES
+router.use('/api/users', userRouter)
 router.use('/api/products', productRouter)
 router.use('/api/carts', cartRouter)
 router.use('/api/sessions', sessionRouter)
