@@ -1,15 +1,14 @@
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
+import path from 'path';
+import fs from 'fs';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+// Obtén la ruta del directorio del módulo actual
+const __filename = import.meta.url.substring("file:///".length);
+const __dirname = path.dirname(__filename);
 
 const getImageById = (req, res) => {
   const { filename } = req.params;
   console.log(`Intento de acceder a la imagen: ${filename}`);
-
-  // Ajusta la ruta para ir fuera de la carpeta src
-  const imagePath = join(__dirname, '/upload/products', filename);
+  const imagePath = path.join(__dirname, '../../upload/products', filename);
 
   if (fs.existsSync(imagePath)) {
     res.sendFile(imagePath);
@@ -19,7 +18,7 @@ const getImageById = (req, res) => {
   }
 };
 
-export default getImageById;
 
+export default getImageById;
 
 
