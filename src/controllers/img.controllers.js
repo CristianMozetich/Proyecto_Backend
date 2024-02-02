@@ -8,7 +8,7 @@ const __dirname = path.dirname(__filename);
 const getImageById = (req, res) => {
   const { filename } = req.params;
   console.log(`Intento de acceder a la imagen: ${filename}`);
-  const imagePath = path.join(__dirname, '../../upload/products', filename);
+  const imagePath = path.join(__dirname, '../upload/products', filename);
 
   if (fs.existsSync(imagePath)) {
     res.sendFile(imagePath);
