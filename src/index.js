@@ -18,7 +18,8 @@ import swaggerUiExpress from "swagger-ui-express";
 
 
 //CORS
-const whiteList = ['http://localhost:5173'];
+const whiteList = ['http://localhost:5173', 'https://backend-coderhouse-b16n.onrender.com'];
+
 
 const corsOptions = {
     origin: function(origin, callback) {
