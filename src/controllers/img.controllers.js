@@ -7,17 +7,17 @@ const __dirname = path.dirname(__filename);
 
 const getImageById = (req, res) => {
   const { filename } = req.params;
+  console.log(`Intento de acceder a la imagen: ${filename}`);
   const imagePath = path.join(__dirname, '../../upload/products', filename);
 
-  // Verifica si la imagen existe
   if (fs.existsSync(imagePath)) {
-    // Envía la imagen como respuesta
     res.sendFile(imagePath);
   } else {
-    // Si la imagen no existe, responde con un error 404
+    console.log(`La imagen no fue encontrada en la ruta: ${imagePath}`);
     res.status(404).json({ error: 'Image not found' });
   }
 };
+
 
 export default getImageById;
 
