@@ -10,6 +10,8 @@ import path from 'path';
 
 const router = Router()
 
+const __filename = import.meta.url.substring("file:///".length);
+const __dirname = path.dirname(__filename);
 // Configura express.static para manejar archivos estáticos en la ruta /api/users/images
 router.use('/api/users/images', express.static(path.join(__dirname, '../../upload/products')));
 
