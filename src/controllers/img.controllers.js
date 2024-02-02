@@ -15,7 +15,7 @@ const getImageById = (req, res) => {
     res.sendFile(imagePath);
   } else {
     // Si la imagen no existe, responde con un error 404
-    res.status(404).send('Image not found');
+    res.status(404).json({ error: 'Image not found' });
   }
 };
 
