@@ -83,11 +83,11 @@ export const deleteAndUpdateCartById = async (req,res)=>{
         return res.status(404).json({ respuesta: 'No se pudo encontrar el producto', mensaje: 'Producto no encontrado' });
       }
   
-      const cartIndex = cart.products.findIndex((prod) => prod.id_prod._id.equals(pid));
+      const cartIndex = cart.products.findIndex((prod) => prod.id_prod.equals(pid));
   
       if (cartIndex !== -1) {
         // Utiliza filter para eliminar el producto del carrito en memoria
-        cart.products = cart.products.filter((prod) => !prod.id_prod._id.equals(pid));
+        cart.products = cart.products.filter((prod) => !prod.id_prod.equals(pid));
   
         // Actualiza el carrito utilizando findByIdAndUpdate
         const respuesta = await cartModel.findByIdAndUpdate(cid, cart, { new: true });
