@@ -317,3 +317,9 @@
 [31mfatal[39m: GET es /api/users/images/upload/products/1706804217923-xbox.jpg - 12:38:25
 [31mfatal[39m: GET es /upload/products/1706804217923-xbox.jpg - 12:38:57
 [31mfatal[39m: GET es /upload/products/1706804217923-xbox.jpg - 12:38:57
+[31mfatal[39m: GET es /api/carts - 19:29:13
+[31mfatal[39m: GET es /api/carts - 19:29:13
+[31mfatal[39m: GET es /api/carts/api/carts/65ac2e705e66a83aab94a784 - 19:29:38
+[31mfatal[39m: GET es /api/carts/api/carts/65ac2e705e66a83aab94a784 - 19:29:38
+[31mfatal[39m: GET es //api/carts/65ac2e705e66a83aab94a784 - 19:29:45
+[31mfatal[39m: GET es //api/carts/65ac2e705e66a83aab94a784 - 19:29:45
