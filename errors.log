@@ -296,3 +296,13 @@
 [31mfatal[39m: GET es /api/users/images/1706729386135-nintendo.jpg - 13:24:38
 [31mfatal[39m: GET es /api/users/images/upload/products/1706729386135-nintendo.jpg - 16:33:05
 [31mfatal[39m: GET es /api/users/images/upload/products/1706729386135-nintendo.jpg - 16:33:05
+[31mfatal[39m: GET es /api/users/upload/images - 12:32:45
+[31mfatal[39m: GET es /api/users/upload/images - 12:32:45
+[31mfatal[39m: GET es /api/users/upload/images/1706804521004-nintendo - 12:34:46
+[31mfatal[39m: GET es /api/users/upload/images/1706804521004-nintendo - 12:34:46
+[31mfatal[39m: GET es /favicon.ico - 12:35:16
+[31mfatal[39m: GET es /favicon.ico - 12:35:16
+[31mfatal[39m: GET es /api/users/images/upload/products/1706804217923-xbox.jpg - 12:38:25
+[31mfatal[39m: GET es /api/users/images/upload/products/1706804217923-xbox.jpg - 12:38:25
+[31mfatal[39m: GET es /upload/products/1706804217923-xbox.jpg - 12:38:57
+[31mfatal[39m: GET es /upload/products/1706804217923-xbox.jpg - 12:38:57
