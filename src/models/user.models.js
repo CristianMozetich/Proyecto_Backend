@@ -36,7 +36,8 @@ const userSchema = new Schema({
     },
     documents: [{
         name: String,
-        reference: String
+        reference: String,
+        path: String
       }],
     last_connection: { // Propiedad para almacenar la última conexión del usuario
         type: Date,

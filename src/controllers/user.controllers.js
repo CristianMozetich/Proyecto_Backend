@@ -59,14 +59,31 @@ export const deleteUser = async (req,res)=>{
 
 export const updateProfilePicture = async (req,res) => {
     try{
-        if(!req.file){
-            return res.status(400).send({ message: 'Error al cargar la imagen'})
-        }
+
+        const userId = req.params.uid; // Obtén el ID del usuario de la URL
+        const user = await userModel.findByIdAndUpdate(
+            userId,
+            {
+                $push: {
+                    documents: {
+                        filename: req.file.filename,
+                        path: req.file.path
+                    }
+                }
+            },
+            {new: true}
+            );
+            console.log(userId)
+            console.log('File information', req.file)
+
+            if(!user){
+                return res.status(400).send({ message: 'Error al cargar la imagen'})
+            }
 
         return res.status(200).send({ message: 'Imagen cargada exitosamente'})
 
-    }catch{
-
+    }catch (error){
+        console.error(error);
         return res.status(500).json({ message: 'Hubo un error al subir la imagen de perfil' });
     }
 }
