@@ -20,6 +20,22 @@ const getImageById = (req, res) => {
   }
 };
 
+export const getImagePerfilById = (req, res) => {
+  const { filename } = req.params;
+  const imagePerfilPath = path.join(process.cwd(), 'upload/profiles', filename)
+
+  try{
+    if(fs.existsSync(imagePerfilPath)){
+      res.sendFile(imagePerfilPath)
+    } else {
+      res.status(404).send({ error: 'Image Not Found' })
+    }
+  } catch (error){
+    res.status(500).send({ message: 'Error al acceder a la imagen', error: error })
+  }
+
+}
+
 
 export default getImageById;
 
