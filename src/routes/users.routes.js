@@ -72,6 +72,6 @@ userRouter.post('/:uid/products', upload.single('productImage'), updateProductsI
 
 userRouter.get('/images/:filename', getImageById);
 
-userRouter.get('imagesperfil/:filename', getImagePerfilById)
+userRouter.get('/imagesperfil/:filename', getImagePerfilById)
 
 export default userRouter
