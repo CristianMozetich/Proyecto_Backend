@@ -1,7 +1,7 @@
 import multer from "multer"
 
 //CONFIGURACIÓN DE MULTER PARA EL ALMACENAMIENTO DE ARCHIVOS E IMAGENES
-const storage = multer.diskStorage({
+const storage = multer.memoryStorage({
     destination: function(req, file, cb){
         let uploadPath = ''
 

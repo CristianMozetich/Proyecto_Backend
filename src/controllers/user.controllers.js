@@ -1,5 +1,6 @@
 import { userModel } from "../models/user.models.js";
 import { productModel } from "../models/products.models.js";
+import { cloudinary } from "../utils/cloudinary.js";
 
 export const getUser = async (req,res)=>{
     const { page, limit } = req.params
@@ -60,14 +61,18 @@ export const deleteUser = async (req,res)=>{
 export const updateProfilePicture = async (req,res) => {
     try{
 
+        const imageBuffer = req.file.buffer.toString('base64'); // Convertir el buffer a base64
+        const result = await cloudinary.uploader.upload(`data:${req.file.mimetype};base64,${imageBuffer}`);
+        const imageUrl = result.secure_url;
+
         const userId = req.params.uid; // Obtén el ID del usuario de la URL
         const user = await userModel.findByIdAndUpdate(
             userId,
             {
                 $push: {
                     documents: {
-                        filename: req.file.filename,
-                        path: req.file.path
+                        filename: req.file.originalname,
+                        path: imageUrl
                     }
                 }
             },
