@@ -13,6 +13,7 @@ import compression from 'express-compression';
 import { addLogger } from "./utils/logger.js"; 
 import swaggerJSDoc from "swagger-jsdoc";
 import swaggerUiExpress from "swagger-ui-express";
+import bodyParser from "body-parser";
 
 
 
@@ -37,6 +38,10 @@ const corsOptions = {
 
 const app = express()
 const PORT = 8090
+
+// Aumentar el límite de tamaño de carga a 50 MB
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
 
 //Swagger (Documentación)
