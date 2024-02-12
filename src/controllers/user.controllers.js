@@ -106,6 +106,11 @@ export const updateDocuments = async (req,res) => {
 
 export const updateProductsImage = async (req, res) => {
     try{
+
+        const imageBuffer = req.file.buffer.toString('base64'); // Convertir el buffer a base64
+        const result = await cloudinary.uploader.upload(`data:${req.file.mimetype};base64,${imageBuffer}`);
+        const imageUrl = result.secure_url;
+
         if(!req.file){
             return res.status(400).send({ message: 'Error al cargar la imagen del producto' })
         }
@@ -118,8 +123,8 @@ export const updateProductsImage = async (req, res) => {
         {
             $push: {
             thumbnails: {
-                filename: req.file.filename,
-                path: req.file.path,
+                filename: req.file.originalname,
+                path: imageUrl,
             },
             },
         },
