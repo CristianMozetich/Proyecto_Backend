@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { getCartById, deleteAndUpdateCartById, deleteCart, postCart, updateCartById } from "../controllers/cart.controllers.js";
-import { checkout, purchaseCart } from "../controllers/orders.controllers.js";
+import { checkout } from "../controllers/orders.controllers.js";
 
 
 const cartRouter = Router()

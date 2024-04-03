@@ -76,6 +76,14 @@ export const checkout = async (req, res) => {
     const { id, amount } = req.body
 
     try{
+        const payment = await stripe.paymentIntents.create({
+            amount,
+            currency: 'usd',
+            description: 'Stripe payment',
+            payment_method: id,
+            confirm: true
+        })
+        console.log(payment)
 
         res.send({ message: 'Successful payment', id, amount })
 
